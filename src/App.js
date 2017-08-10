@@ -7,12 +7,11 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to Ingredients 20/20</h2>
         </div>
-        <p className="App-intro">
-          YO YO YO THIS IS MY APP
-        </p>
+        <div>
+          <h1>Introducing a new way to ensure your food safety</h1>
+        </div>
         <button className="login">LOGIN</button>
         <button className="signup">SIGNUP</button>
       </div>

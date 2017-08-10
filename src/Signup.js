@@ -9,8 +9,14 @@ class Signup extends Component {
         <div>
           <h2>Welcome to Ingredients 20/20</h2>
         </div>
-        <button>LOGIN</button>
-        <button>SIGNUP</button>
+        <div>
+          <input type="email" />
+          <input type="password" />
+        </div>
+        <div>
+          <button className="signup">SIGNUP</button>
+          <button className="login">LOGIN</button>
+        </div>
       </div>
     );
   }
