@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import Landing from './Landing';
+import Login from './Login';
+import Signup from './Signup';
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to Ingredients 20/20</h2>
-        </div>
-        <div>
-          <h1>Introducing a new way to ensure your food safety</h1>
-        </div>
-        <button className="login">LOGIN</button>
-        <button className="signup">SIGNUP</button>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={Landing} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
 }
 
 export default App;
+
+
