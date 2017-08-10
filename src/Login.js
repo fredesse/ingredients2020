@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 class Login extends Component {
@@ -13,8 +14,10 @@ class Login extends Component {
           <input type="password" />
         </div>
         <div>
-          <button className="login">LOGIN</button>
-          <button className="signup">SIGNUP</button>
+          <ul>
+            <li><Link to="/dashboard">LOGIN</Link></li>
+            <li><Link to="/signup">SIGNUP</Link></li>
+          </ul>
         </div>
       </div>
     );

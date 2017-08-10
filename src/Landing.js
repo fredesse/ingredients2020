@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './App.css';
 
 class Landing extends Component {
@@ -12,8 +12,10 @@ class Landing extends Component {
         <div>
           <h1>Introducing a new way to ensure your food safety</h1>
         </div>
-        <button className="login" to="/login">LOGIN</button>
-        <button className="signup" to="/signup">SIGNUP</button>
+        <ul>
+          <li><Link to="/login">LOGIN</Link></li>
+          <li><Link to="/signup">SIGNUP</Link></li>
+        </ul>
       </div>
     )
   }
