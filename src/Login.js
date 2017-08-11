@@ -46,7 +46,7 @@ class Login extends Component {
       password: this.state.password
     }
 
-    $.post('http://localhost:8000/api/login', {
+    $.post('/api/login', {
       data: data
     })
     .done(() => {
