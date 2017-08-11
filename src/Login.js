@@ -53,10 +53,14 @@ class Login extends Component {
       console.log('user was logged in');
       this.onHandleSuccess();
     })
-    .fail(() => {
+    .fail((msg) => {
       //add a second fail method when password is wrong
-      console.log('Login failed');
-      this.onHandleNewUser();
+      console.log('line 58', msg.responseText);
+      if (msg.responseText === 'user does not exist, signup please') {
+        this.onHandleNewUser();
+      } else if (msg.responseText === 'incorrect password') {
+        console.log('incorrect password')
+      }
     })
   }
 

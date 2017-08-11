@@ -59,12 +59,13 @@ app.post('/api/login', function(req, res) {
         user.comparePassword(password, user.password, function(err, match) {
           if (match) {
             // TODO: take them to dashboard?
-            console.log('success', username);
+            console.log('line 62: success', username);
             res.end();
             // res.redirect('/dashboard');
           } else {
-            console.log('incorrect password');
-            res.redirect('/login');
+            console.log('line 66: incorrect password');
+            //res.redirect('/login');
+            res.status(401).send('incorrect password');
           }
         });
       }
