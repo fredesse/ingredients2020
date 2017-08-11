@@ -28,6 +28,10 @@ class Signup extends Component {
     });
   }
 
+  onHandleLogin() {
+    this.props.history.push('/dashboard');
+  }
+
   submitUser(e) {
     console.log(this.state);
     e.preventDefault();
@@ -47,6 +51,7 @@ class Signup extends Component {
     })
     .done((str) => {
       console.log('line 50', str);
+      this.onHandleLogin();
     })
     .fail(function() {
       console.log('Signup failed');

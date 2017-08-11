@@ -28,6 +28,15 @@ class Login extends Component {
     });
   }
 
+  onHandleSuccess() {
+    this.props.history.push('/dashboard');
+  }
+
+  onHandleNewUser() {
+    console.log('line 36');
+    this.props.history.push('/signup');
+  }
+
   LogUserIn(e) {
     console.log(this.state);
     e.preventDefault();
@@ -37,14 +46,17 @@ class Login extends Component {
       password: this.state.password
     }
 
-    $.post('http://localhost:8000/api/users', {
+    $.post('http://localhost:8000/api/login', {
       data: data
     })
     .done(() => {
-      console.log('user was logged in')
+      console.log('user was logged in');
+      this.onHandleSuccess();
     })
     .fail(() => {
-      console.log('Login failed')
+      //add a second fail method when password is wrong
+      console.log('Login failed');
+      this.onHandleNewUser();
     })
   }
 
@@ -60,7 +72,7 @@ class Login extends Component {
           <input type="submit" value="Submit"/>
         </form>
         <div>
-          <Link to="/signup">SIGN UP</Link>
+          {/*<Link to="/signup">SIGN UP</Link>*/}
         </div>
       </div>
     );

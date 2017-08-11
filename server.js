@@ -35,7 +35,8 @@ app.post('/api/signup', function(req, res) {
         });
       } else {
         console.log(`${username} exists`);
-        res.redirect('/dashboard');
+        //res.redirect('/dashboard');
+        res.end();
         // TODO: redirect back to the signup page
       }
     });
@@ -46,17 +47,21 @@ app.post('/api/login', function(req, res) {
   var username = req.body.data.username;
   var password = req.body.data.password;
 
+  console.log('line 49', username);
+
   User.findOne({username: username})
     .exec(function(err, user) {
       if (!user) {
         console.log('user does not exist, signup please');
-        res.redirect('/signup');
+        // res.redirect('/signup');
+        res.status(403).send('user does not exist, signup please');
       } else {
         user.comparePassword(password, user.password, function(err, match) {
           if (match) {
             // TODO: take them to dashboard?
             console.log('success', username);
-            res.redirect('/dashboard');
+            res.end();
+            // res.redirect('/dashboard');
           } else {
             console.log('incorrect password');
             res.redirect('/login');
