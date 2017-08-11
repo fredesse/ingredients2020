@@ -9,15 +9,13 @@ class Login extends Component {
         <div>
           <h2>Welcome to Ingredients 20/20</h2>
         </div>
+        <form onSubmit={this.LogUserIn}>
+          <input type="text" value={this.state.username} onChange={this.handleUsername} placeholder="Email" />
+          <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" />
+          <input type="submit" value="Submit"/>
+        </form>
         <div>
-          <input type="email" />
-          <input type="password" />
-        </div>
-        <div>
-          <ul>
-            <li><Link to="/dashboard">LOGIN</Link></li>
-            <li><Link to="/signup">SIGNUP</Link></li>
-          </ul>
+          <Link to="/signup">SIGN UP</Link>
         </div>
       </div>
     );
