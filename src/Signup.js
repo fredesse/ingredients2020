@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
+import UserExists from './UserExists';
 import './App.css';
 
 class Signup extends Component {
@@ -8,12 +9,14 @@ class Signup extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      userexists: false
     };
 
     this.handleUsername = this.handleUsername.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.submitUser = this.submitUser.bind(this);
+    this.onUserExists = this.onUserExists.bind(this);
   }
 
   handleUsername(event) {
@@ -32,6 +35,12 @@ class Signup extends Component {
     this.props.history.push('/dashboard');
   }
 
+  onUserExists() {
+    this.setState({
+      userexists: true
+    });
+  }
+
   submitUser(e) {
     console.log(this.state);
     e.preventDefault();
@@ -40,11 +49,6 @@ class Signup extends Component {
       username: this.state.username,
       password: this.state.password
     }
-/*    $.ajax({
-      url: 'http://localhost:3000/api/user',
-      type: 'POST',
-      data: data
-    })*/
 
     $.post('/api/signup', {
       data: data
@@ -53,8 +57,9 @@ class Signup extends Component {
       console.log('line 50', str);
       this.onHandleLogin();
     })
-    .fail(function() {
-      console.log('Signup failed');
+    .fail(() => {
+      console.log('Incorrect password');
+      this.onUserExists();
     });
   }
 
@@ -69,6 +74,9 @@ class Signup extends Component {
           <input type="password" value={this.state.password} onChange={this.handlePassword}/>
           <input type="submit" value="Submit"/>
         </form>
+        <div>
+          {this.state.userexists ? <UserExists /> : null}
+        </div>
       </div>
     );
   }

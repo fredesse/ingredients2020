@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import $ from 'jquery';
+import NoUser from './NoUser';
+import IncorrectPw from './IncorrectPw';
 import './App.css';
 
 class Login extends Component {
@@ -8,7 +10,9 @@ class Login extends Component {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      nouser: false,
+      incorrectpw: false
     };
 
     this.handleUsername = this.handleUsername.bind(this);
@@ -32,9 +36,19 @@ class Login extends Component {
     this.props.history.push('/dashboard');
   }
 
-  onHandleNewUser() {
-    console.log('line 36');
-    this.props.history.push('/signup');
+  onHandleNoUser() {
+    console.log('line 40');
+    //this.props.history.push('/signup');
+    this.setState({
+      nouser: true
+    });
+  }
+
+  onHandleIncorrectPw() {
+    console.log('line 48');
+    this.setState({
+      incorrectpw: true
+    });
   }
 
   LogUserIn(e) {
@@ -55,11 +69,12 @@ class Login extends Component {
     })
     .fail((msg) => {
       //add a second fail method when password is wrong
-      console.log('line 58', msg.responseText);
+      console.log('line 72', msg.responseText);
       if (msg.responseText === 'user does not exist, signup please') {
-        this.onHandleNewUser();
+        this.onHandleNoUser();
       } else if (msg.responseText === 'incorrect password') {
-        console.log('incorrect password')
+        console.log('incorrect password');
+        this.onHandleIncorrectPw();
       }
     })
   }
@@ -76,7 +91,8 @@ class Login extends Component {
           <input type="submit" value="Submit"/>
         </form>
         <div>
-          {/*<Link to="/signup">SIGN UP</Link>*/}
+          {this.state.nouser ? <NoUser /> : null}
+          {this.state.incorrectpw ? <IncorrectPw /> : null}
         </div>
       </div>
     );
