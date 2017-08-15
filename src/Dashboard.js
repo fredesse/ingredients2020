@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import $ from 'jquery';
+import SavedItems from './SavedItems';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -9,7 +10,8 @@ class Dashboard extends Component {
       search: '',
       searchRes: '',
       elLink: '',
-      savedItems: []
+      savedItems: [],
+      renderItems: false
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.searchDb = this.searchDb.bind(this);
@@ -25,19 +27,22 @@ class Dashboard extends Component {
   renderSavedItems() {
     console.log('my saved items btn was clicked');
 
+    this.setState({
+      renderItems: true
+    });
+
     //here we need to create a get method to populate savedItems array
     $.get('')
     .done((items) => {
       console.log('items received');
       //on sucess we set the new state
       this.setState({
-        this.savedItems = items;
+        savedItems: items
       });
     })
     .fail(() => {
       console.log('failed getting items');
     });
-
 
   }
 
@@ -101,7 +106,12 @@ class Dashboard extends Component {
           }
         </div>
         <div>
-          <SavedItems onClick={this.renderSavedItems.bind(this)} items={this.state.items} />
+          <div onClick={this.renderSavedItems.bind(this)}>
+            MY SAVED ITEMS
+          </div>
+          <div>
+            {this.state.renderItems ? <SavedItems items={this.state.items} /> : null}
+          </div>
         </div>
       </div>
     );
