@@ -8,7 +8,8 @@ class Dashboard extends Component {
     this.state = {
       search: '',
       searchRes: '',
-      elLink: ''
+      elLink: '',
+      savedItems: []
     };
     this.handleSearch = this.handleSearch.bind(this);
     this.searchDb = this.searchDb.bind(this);
@@ -20,6 +21,27 @@ class Dashboard extends Component {
     console.log('log out button clicked');
     this.props.history.push('/login');
   }
+
+  renderSavedItems() {
+    console.log('my saved items btn was clicked');
+
+    //here we need to create a get method to populate savedItems array
+    $.get('')
+    .done((items) => {
+      console.log('items received');
+      //on sucess we set the new state
+      this.setState({
+        this.savedItems = items;
+      });
+    })
+    .fail(() => {
+      console.log('failed getting items');
+    });
+
+
+  }
+
+
 
   handleSearch(event) {
     this.setState({
@@ -70,14 +92,17 @@ class Dashboard extends Component {
               onChange={this.handleSearch}/>
           <input type="submit" value="Submit"/>
         </form>
-        {this.state && this.state.elLink ?
-          <div>{this.state.searchRes + ' found in database! - '}
-            <a href={this.state.elLink} target="_blank">{this.state.elLink}</a>
-          </div> :
-          <div>{this.state.searchRes}</div>
-
-        }
-
+        <div>
+          {this.state && this.state.elLink ?
+            <div>{this.state.searchRes + ' found in database! - '}
+              <a href={this.state.elLink} target="_blank">{this.state.elLink}</a>
+            </div> :
+            <div>{this.state.searchRes}</div>
+          }
+        </div>
+        <div>
+          <SavedItems onClick={this.renderSavedItems.bind(this)} items={this.state.items} />
+        </div>
       </div>
     );
   }
