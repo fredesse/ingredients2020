@@ -15,6 +15,12 @@ class Dashboard extends Component {
     this.renderSearch = this.renderSearch.bind(this);
   }
 
+  logOutUser() {
+    //probs need some kind of server resp for ending session
+    console.log('log out button clicked');
+    this.props.history.push('/login');
+  }
+
   handleSearch(event) {
     this.setState({
       search: event.target.value
@@ -52,6 +58,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div>
+        <div>
+          <div onClick={this.logOutUser.bind(this)}>LOG OUT</div>
+        </div>
         <div>
           <h2>Search Ingredients 20/20</h2>
         </div>
