@@ -1,21 +1,32 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Landing from './Landing';
-import Login from './Login';
-import Signup from './Signup';
+import Callback from './Callback/Callback';
+import Auth from './Auth/Auth';
+import history from './history';
 import Dashboard from './Dashboard';
 import './App.css';
+
+const auth = new Auth();
+
+const handleAuthentication = (nextState, replace) => {
+  if (/access_token|id_token|error/.test(nextState.location.hash)) {
+    auth.handleAuthentication();
+  }
+}
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter history={history} component={App}>
           <Switch>
-            <Route path="/" exact component={Landing} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/" exact render={(props) => <Landing auth={auth} {...props} />} />
+            <Route path="/dashboard" exact render={(props) => <Dashboard auth={auth} {...props} />} />
+            <Route path="/callback" render={(props) => {
+              handleAuthentication(props);
+              return <Callback {...props} />
+            }}/>
           </Switch>
         </BrowserRouter>
       </div>
@@ -24,5 +35,3 @@ class App extends Component {
 }
 
 export default App;
-
-

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import Auth from './Auth/Auth.js';
 import './App.css';
 
 class Landing extends Component {
+
+  auth = new Auth()
+
   render() {
     return (
       <div>
@@ -14,8 +18,7 @@ class Landing extends Component {
           <h2>A New Way to Ensure Your Food Safety</h2>
         </div>
         <div className="Button-parent">
-          <Link to="/login"><Button className="Login-btn" bsStyle="default" bsSize="large">LOG IN</Button></Link>
-          <Link to="/signup"><Button className="Signup-btn" bsStyle="primary" bsSize="large">SIGN UP</Button></Link>
+          <Button className="Login-btn" bsStyle="default" bsSize="large" onClick={this.auth.login.bind(this)}>LOG IN / SIGN UP</Button>
         </div>
       </div>
     );
