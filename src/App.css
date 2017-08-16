@@ -1,24 +1,145 @@
+
+
+/*@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}*/
+
+/*//////////////////
+GENERAL STYLING
+//////////////////*/
+
+/* for image overlay
+linear-gradient(
+    rgba(198,198,198, .3),
+    rgba(198,198,198, .3)
+  )*/
+
+html body {
+  font-family: 'Raleway', sans-serif;
+  background: url(./img/ingredients.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body h1,
+body h2 {
+  color: #fff;
+}
+
+Button {
+  letter-spacing: 1.2px;
+}
+
+Button a:hover {
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
-  background-color: #222;
+  font-family: 'Lobster', cursive;
   height: 150px;
+  margin-bottom: 10em;
   padding: 20px;
+  padding-top: 3em;
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+/*//////////////////
+LANDING PAGE STYLING
+//////////////////*/
+
+.Welcome-header {
+  background: linear-gradient(
+      rgba(5,5,5, .5),
+      rgba(5,5,5, .5)
+    );
+  padding: 2em 2em;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.Welcome-header h2 {
+  margin: 0;
+}
+
+.Button-parent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.Button-parent Button {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 360px;
+  background-color: rgba(255, 255, 255, 0);
+  border: 3px solid #fff;
+}
+
+.Button-parent .Login-btn {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  color: #fff;
+}
+
+.Button-parent .Signup-btn {
+  margin-bottom: 1em;
+  color: #407cd6;
+}
+
+.Button-parent .Login-btn:hover {
+  background-color: #fff;
+  border: 3px solid #fff;
+  color: #707275;
+}
+
+
+
+.btn-default a:hover {
+  color: #707275;
+}
+
+.Button-parent .Signup-btn a:hover {
+  background-color: #407cd6;
+}
+
+.Button-parent .Signup-btn:hover {
+  background-color: #407cd6;
+  border: 3px solid #407cd6;
+  color: #fff;
+}
+
+.Button-parent Button {
+  font-size: 1.6em;
+  font-weight: 900;
+}
+
+/*//////////////////
+LOGIN PAGE STYLING
+//////////////////*/
+
+.Button-parent input {
+  margin: 0 auto;
+  width: 80%;
+  max-width: 360px;
+  margin-top: .4em;
+  margin-bottom: .4em;
+  background-color: rgba(255, 255, 255, 0);
+  color: #fff;
+  font-size: 1.5em;
+  letter-spacing: 1.2px;
+  border: none;
+  border-bottom: 3px solid #fff;
+}
+
+.Button-parent input::placeholder {
+  color: #fff;
+}
+
+.Button-parent input:focus {
+  outline: none;
 }

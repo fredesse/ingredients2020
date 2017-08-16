@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import './App.css';
 
 class Landing extends Component {
@@ -7,17 +8,17 @@ class Landing extends Component {
     return (
       <div>
         <div className="App-header">
-          <h2>Welcome to Ingredients 20/20</h2>
+          <h1>Ingredients 20/20</h1>
         </div>
-        <div>
-          <h1>Introducing a new way to ensure your food safety</h1>
+        <div className="Welcome-header">
+          <h2>A New Way to Ensure Your Food Safety</h2>
         </div>
-        <ul>
-          <li><Link to="/login">LOGIN</Link></li>
-          <li><Link to="/signup">SIGNUP</Link></li>
-        </ul>
+        <div className="Button-parent">
+          <Link to="/login"><Button className="Login-btn" bsStyle="default" bsSize="large">LOG IN</Button></Link>
+          <Link to="/signup"><Button className="Signup-btn" bsStyle="primary" bsSize="large">SIGN UP</Button></Link>
+        </div>
       </div>
-    )
+    );
   }
 }
 

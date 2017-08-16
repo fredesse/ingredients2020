@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import NoUser from './NoUser';
 import IncorrectPw from './IncorrectPw';
+import { Button } from 'react-bootstrap';
 import './App.css';
 
 class Login extends Component {
@@ -82,14 +83,16 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <div>
-          <h2>Welcome to Ingredients 20/20</h2>
+        <div className="App-header">
+          <h1>Ingredients 20/20</h1>
         </div>
-        <form onSubmit={this.LogUserIn}>
-          <input type="text" value={this.state.username} onChange={this.handleUsername} placeholder="Email" />
-          <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" />
-          <input type="submit" value="Submit"/>
-        </form>
+        <div>
+          <form className="Button-parent" onSubmit={this.LogUserIn}>
+            <input type="text" value={this.state.username} onChange={this.handleUsername} placeholder="Email" />
+            <input type="password" value={this.state.password} onChange={this.handlePassword} placeholder="Password" />
+            <Button className="Login-btn" bsStyle="default" type="submit">LOG IN</Button>
+          </form>
+        </div>
         <div>
           {this.state.nouser ? <NoUser /> : null}
           {this.state.incorrectpw ? <IncorrectPw /> : null}
