@@ -5,7 +5,7 @@ export default class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'ingredients2020.auth0.com',
     clientID: 'nVHF1bEueq3Dql5iNHVDZ3_soWw6qGd9',
-    redirectUri: 'http://localhost:3000/dashboard',
+    redirectUri: 'http://localhost:3000/callback',
     audience: 'https://ingredients2020.auth0.com/userinfo',
     responseType: 'token id_token',
     scope: 'openid'
@@ -28,7 +28,7 @@ export default class Auth {
         this.setSession(authResult);
         history.replace('/dashboard');
       } else if (err) {
-        history.replace('/');
+        history.replace('/dashboard');
         console.log(err);
       }
     });
@@ -57,6 +57,7 @@ export default class Auth {
     // Check whether the current time is past the
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
+    let returnVal = new Date().getTime() < expiresAt;
+    return returnVal;
   }
 }

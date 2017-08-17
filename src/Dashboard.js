@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import $ from 'jquery';
+import { Button } from 'react-bootstrap';
 // import SavedItems from './SavedItems';
 
 class Dashboard extends Component {
@@ -15,13 +16,12 @@ class Dashboard extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.searchDb = this.searchDb.bind(this);
     this.renderSearch = this.renderSearch.bind(this);
-    console.log(props);
   }
 
-  logOutUser() {
-    //probs need some kind of server resp for ending session
-    console.log('log out button clicked');
-    this.props.history.push('/login');
+
+  logout() {
+    this.props.auth.logout();
+    this.props.history.push('/');
   }
 
   renderPastSearches() {
@@ -85,36 +85,46 @@ class Dashboard extends Component {
 
   }
   render() {
+    const {isAuthenticated } = this.props.auth;
+
     return (
       <div>
+        {
+          !isAuthenticated() &&
+          <p>Please log in to gain access to this page</p>
+        }
+        {
+        isAuthenticated() && (
         <div>
-          <div onClick={this.logOutUser.bind(this)}>LOG OUT</div>
-        </div>
-        <div>
-          <h2>Search Ingredients 20/20</h2>
-        </div>
-
-        <form onSubmit={this.searchDb}>
-          <input type="text" value={this.state.search} placeholder="Search Ingredient"
-              onChange={this.handleSearch}/>
-          <input type="submit" value="Submit"/>
-        </form>
-        <div>
-          {this.state && this.state.searchResLink ?
-            <div>{this.state.searchResName + ' found in database! - '}
-              <a href={this.state.searchResLink} target="_blank">{this.state.searchResLink}</a>
-            </div> :
-            <div>{this.state.searchResName}</div>
-          }
-        </div>
-        <div>
-          <button onClick={this.renderPastSearches.bind(this)}>
-            MY SAVED ITEMS
-          </button>
           <div>
-            {this.state.pastSearches}
+            <Button bsStyle="default" className="Logout-btn" onClick={this.logout.bind(this)}>LOG OUT</Button>
           </div>
-        </div>
+          <div>
+            <h2>Search Ingredients 20/20</h2>
+          </div>
+
+          <form onSubmit={this.searchDb}>
+            <input type="text" value={this.state.search} placeholder="Search Ingredient"
+                onChange={this.handleSearch}/>
+            <input type="submit" value="Submit"/>
+          </form>
+          <div>
+            {this.state && this.state.searchResLink ?
+              <div>{this.state.searchResName + ' found in database! - '}
+                <a href={this.state.searchResLink} target="_blank">{this.state.searchResLink}</a>
+              </div> :
+              <div>{this.state.searchResName}</div>
+            }
+          </div>
+          <div>
+            <button onClick={this.renderPastSearches.bind(this)}>
+              MY SAVED ITEMS
+            </button>
+            <div>
+              {this.state.pastSearches}
+            </div>
+          </div>
+        </div>)}
       </div>
     );
   }

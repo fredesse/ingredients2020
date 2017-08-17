@@ -13,7 +13,7 @@ const handleAuthentication = (nextState, replace) => {
   if (/access_token|id_token|error/.test(nextState.location.hash)) {
     auth.handleAuthentication();
   }
-}
+};
 
 class App extends Component {
   render() {
@@ -35,3 +35,11 @@ class App extends Component {
 }
 
 export default App;
+
+// <Route path="/dashboard" exact render={(props) => (
+//   auth.isAuthenticated() ? (
+//     <Dashboard auth={auth} {...props} />
+//   ) : (
+//     <Redirect to="/"/>
+//   )
+//   )} />
