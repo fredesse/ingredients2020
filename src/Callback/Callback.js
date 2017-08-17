@@ -5,11 +5,20 @@ import { Button } from 'react-bootstrap';
 import './../App.css';
 
 class Callback extends Component {
+
+  sendToDashboard() {
+    return setTimeout(() => {
+      this.props.history.push('/dashboard');
+      console.log('moving on to dashboard');
+    }, 2000);
+  }
+
   render() {
 
     return (
       <div>
-        <Link to="/dashboard"><Button bsStyle="default">Proceed</Button></Link>
+        <h1>Please wait while we redirect you to the app</h1>
+        {this.sendToDashboard()}
       </div>
     );
   }
@@ -29,3 +38,4 @@ export default Callback;
     //   right: 0,
     //   backgroundColor: 'white',
     // }
+//<Link to="/dashboard"><Button bsStyle="default">Proceed</Button></Link>
