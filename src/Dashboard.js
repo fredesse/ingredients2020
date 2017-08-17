@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {bindAll} from 'lodash';
 import $ from 'jquery';
+import { Button } from 'react-bootstrap';
 // import SavedItems from './SavedItems';
 
 class Dashboard extends Component {
@@ -16,13 +17,12 @@ class Dashboard extends Component {
       pastSearches: []
     };
 
-    bindAll(this, 'renderPastSearches', 'handleFile', 'handleSearch', 'handleSubmit', 'searchDb', 'renderSearch');
+    bindAll(this, 'renderPastSearches', 'handleFile', 'handleSearch', 'handleSubmit', 'searchDb', 'renderSearch', 'logout');
   }
 
-  logOutUser() {
-    //probs need some kind of server resp for ending session
-    console.log('log out button clicked');
-    this.props.history.push('/login');
+  logout() {
+    this.props.auth.logout();
+    this.props.history.push('/');
   }
 
   renderPastSearches() {
@@ -133,46 +133,57 @@ class Dashboard extends Component {
   googleAPIsearch() {
 
   }
-  
+
   render() {
+
+    const {isAuthenticated } = this.props.auth;
+
     return (
       <div>
+        {
+          !isAuthenticated() &&
+          <h1>Please log in to gain access to this page</h1>
+        }
+        {
+        isAuthenticated() && (
         <div>
-          <div onClick={this.logOutUser.bind(this)}>LOG OUT</div>
-        </div>
-        <div>
-          <h2>Search Ingredients 20/20</h2>
-        </div>
-
-        <form onSubmit={this.searchDb}>
-          <input type="text" value={this.state.search} placeholder="Search Database for Ingredient"
-              onChange={this.handleSearch}/>
-          <input type="submit" value="Submit"/>
-        </form>
-
-        <form onSubmit={this.handleSubmit} encType='multipart/form-data'>
-          <input type='file' name='image' onChange={this.handleFile} />
-          <input type="submit" value="Submit"/>
-        </form>
-
-
-        <div>
-          {this.state && this.state.searchResLink ?
-            <div>{this.state.searchResName + ' found in database! - '}
-              <a href={this.state.searchResLink} target="_blank">{this.state.searchResLink}</a>
-            </div> :
-            <div>{this.state.searchResName}</div>
-          }
-        </div>
-
-        <div>
-          <button onClick={this.renderPastSearches.bind(this)}>
-            MY SAVED ITEMS
-          </button>
           <div>
-            {this.state.pastSearches}
+            <Button bsStyle="default" className="Logout-btn" onClick={this.logout}>LOG OUT</Button>
           </div>
-        </div>
+          <div>
+            <h2>Search Ingredients 20/20</h2>
+          </div>
+
+          <form onSubmit={this.searchDb}>
+            <input type="text" value={this.state.search} placeholder="Search Database for Ingredient"
+                onChange={this.handleSearch}/>
+            <input type="submit" value="Submit"/>
+          </form>
+
+          <form onSubmit={this.handleSubmit} encType='multipart/form-data'>
+            <input type='file' name='image' onChange={this.handleFile} />
+            <input type="submit" value="Submit"/>
+          </form>
+
+
+          <div>
+            {this.state && this.state.searchResLink ?
+              <div>{this.state.searchResName + ' found in database! - '}
+                <a href={this.state.searchResLink} target="_blank">{this.state.searchResLink}</a>
+              </div> :
+              <div>{this.state.searchResName}</div>
+            }
+          </div>
+
+          <div>
+            <button onClick={this.renderPastSearches.bind(this)}>
+              MY SAVED ITEMS
+            </button>
+            <div>
+              {this.state.pastSearches}
+            </div>
+          </div>
+        </div>)}
       </div>
     );
   }
