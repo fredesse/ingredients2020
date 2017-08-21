@@ -22,6 +22,7 @@ html body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding-bottom: 3em;
 }
 
 body h1,
@@ -147,6 +148,16 @@ LOGIN PAGE STYLING
 DASHBOARD STYLING
 //////////////////*/
 
+.Logout-btn {
+  max-width: 360px;
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0);
+  margin-top: 1em;
+  border: 3px solid #fff;
+  font-weight: 700;
+  font-size: 1em;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
@@ -217,6 +228,7 @@ DASHBOARD STYLING
 }
 
 .Button-parent .Saved-items {
+  margin-top: 1em;
   color: #fff;
   font-weight: 700;
   font-size: 1em;
@@ -232,3 +244,23 @@ DASHBOARD STYLING
   margin-top: 1em;
   margin-bottom: 1em;
 }
+
+.Search-parent {
+  background: rgba(0, 0, 0, .5);
+  width: 80%;
+  margin: 0 auto;
+}
+
+.Search-parent h3 {
+  margin: .7em auto;
+}
+
+.Search-parent p {
+  max-width: 90%;
+  margin: .7em auto;
+  word-wrap: break-word;
+}
+/*.Search-render {
+  max-width: 100%;
+  color: red;
+}*/

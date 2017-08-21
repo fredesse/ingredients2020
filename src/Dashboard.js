@@ -196,11 +196,16 @@ class Dashboard extends Component {
         </form>
           <img src={this.state.data_uri} className="Image-size" alt=""></img>
 
-          <div>
+          <div className="Search-parent">
               {this.state.currentFlagged.map((ingredient) => (
-                <search
+                <search className="Search-render"
                   key={ingredient._id}
-                >{ingredient.name + ' - ' + ingredient.link}<br/></search>
+                >
+                <div>
+                  <h3>{ingredient.name}</h3>
+                  <p>{ingredient.link}</p>
+                </div>
+                </search>
               )
               )}
               {this.state.passed && <div> {this.state.passed} </div>}
@@ -224,7 +229,7 @@ class Dashboard extends Component {
                 <search key={ingredient._id}>{ingredient.name + ' - ' + ingredient.link}<br/></search>
               )
               )}
-              
+
             </div>
           </div>
         </div>)}
