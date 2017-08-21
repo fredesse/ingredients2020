@@ -1,19 +1,6 @@
-
-
-/*@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}*/
-
 /*//////////////////
 GENERAL STYLING
 //////////////////*/
-
-/* for image overlay
-linear-gradient(
-    rgba(198,198,198, .3),
-    rgba(198,198,198, .3)
-  )*/
 
 html body {
   font-family: 'Raleway', sans-serif;
