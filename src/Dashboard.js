@@ -178,7 +178,7 @@ class Dashboard extends Component {
         isAuthenticated() && (
         <div className="Dashboard-btns">
           <div>
-            <button bsStyle="default" className="Logout-btn" onClick={this.logout}>LOG OUT</button>
+            <button className="Logout-btn" onClick={this.logout}>LOG OUT</button>
           </div>
           <div className="App-header">
             <h2>Ingredients 20/20</h2>
